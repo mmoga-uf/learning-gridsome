@@ -1,33 +1,58 @@
-<template>
-  <Layout>
+<template lang="pug">
+layout
+  v-img(alt="Example image" :src="imgUrl" width="135")
+  h1 Hello, world!
+  p Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
+  .title.mb-3 Total posts: {{ totalCount }}
 
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
-  </Layout>
+  v-list(two-line)
+    v-list-tile(
+      v-for="(post, index) in posts"
+      :key="index"
+      @click="onClick(post)"
+    )
+      v-list-tile-content
+        v-list-tile-title {{ post.node.title }}
+        v-list-tile-sub-title {{ post.node.date }}
 </template>
+
+<page-query>
+query {
+  allPost {
+    totalCount
+    edges {
+      node {
+        id
+        title
+        slug
+        path
+        date
+      }
+    }
+  }
+}
+</page-query>
 
 <script>
 export default {
-  metaInfo: {
-    title: 'Hello, world!'
-  }
-}
+  data() {
+    return {
+      imgUrl: require("@/favicon.png"),
+    };
+  },
+  computed: {
+    posts() {
+      return this.$page.allPost.edges;
+    },
+    totalCount() {
+      return this.$page.allPost.totalCount;
+    },
+  },
+  methods: {
+    onClick(post) {
+      this.$router.push({ path: post.node.path });
+    },
+  },
+};
 </script>
-
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
