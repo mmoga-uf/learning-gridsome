@@ -5,6 +5,13 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
-  plugins: []
-}
+    siteName: 'Gridsome',
+    plugins: [],
+    chainWebpack: config => {
+        config.module
+            .rule('pug')
+            .test(/\.pug$/)
+            .use('pug-plain-loader')
+            .loader('pug-plain-loader');
+    },
+};

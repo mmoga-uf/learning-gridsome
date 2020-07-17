@@ -8,5 +8,11 @@
   },
   "dependencies": {
     "gridsome": "^0.7.0"
+  },
+  "devDependencies": {
+    "gridsome-plugin-pug": "0.0.3",
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "sass-loader": "^9.0.2"
   }
 }
