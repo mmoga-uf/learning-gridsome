@@ -13,4 +13,6 @@ This is the project you get when you run `gridsome create new-project`.
 3. `gridsome develop` to start a local dev server at `http://localhost:8080`
 4. Happy coding 🎉🙌
 
-Following [this](https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-pug-and-sass-support)
+Following [this post](https://lobotuerto.com/blog/quickstart-guide-for-a-new-gridsome-project/#add-pug-and-sass-support), but it appears to not work anymore.
+
+Maybe I'll pick this back up again--maybe.
